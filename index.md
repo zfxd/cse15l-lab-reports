@@ -1,5 +1,9 @@
 # CSE 15L Lab: Vincent Zhang
 
-Week 2 lab [here](wk2-lab.).
+Welcome to my page! A little about me here [here](wk2-lab). (Wk2 lab work)
+
+---
+
+## Lab reports
 
 Week 2 lab report [here](/wk2-lab-report/lab-report-1-week-2.md).
