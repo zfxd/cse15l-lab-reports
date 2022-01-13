@@ -3,7 +3,9 @@
 ***Hello, world!***
 
 ## About me
+
 I like to:
+
 * Play video games
 * Draw
 
@@ -31,3 +33,7 @@ Here is some `inline code`
 ```
 #Codeblocks!
 ```
+
+## Live formatting experiments
+
+How fun!
