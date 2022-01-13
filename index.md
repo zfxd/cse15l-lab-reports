@@ -1,6 +1,6 @@
-# ** My first site **
+# My first site
 
-*Hello, world!*
+***Hello, world!***
 
 ## About me
 I like to:
@@ -10,4 +10,24 @@ I like to:
 That's about it lol
 
 I do art [here](https://www.instagram.com/zaceffaxedee/):
-Here's an example! TODO
+
+Here's an example! 
+
+![Image](THIS%20ONE%20IS%20THE%20DP.jpg)
+
+---
+
+Additional markdown formatting fun:
+
+> Blockquotes
+
+1. one
+2. two
+3. three!
+4. four!
+
+Here is some `inline code`
+
+```
+#Codeblocks!
+```
