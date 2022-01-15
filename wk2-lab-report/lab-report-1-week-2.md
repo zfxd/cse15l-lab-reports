@@ -83,7 +83,7 @@ A successful login looks something like this:
 ```
 Last login: Fri Jan 14 16:28:51 2022 from 100.83.33.11
 quota: No filesystem specified.
-Hello cs15lwi22afr, you are currently logged into ieng6-201.ucsd.edu
+Hello cs15lwi22xyz, you are currently logged into ieng6-201.ucsd.edu
 
 You are using 0% CPU on this system
 
@@ -95,7 +95,7 @@ ieng6-203   16:25:01   19  2.25,  2.62,  2.50
 
 
 Fri Jan 14, 2022  4:29pm - Prepping cs15lwi22
-[cs15lwi22afr@ieng6-201]:~:76$
+[cs15lwi22xyz@ieng6-201]:~:76$
 ```
 
 Congratulations, you are now connected to one of the computers in the CSE basement! Any commands you enter now will be run on that computer (the **server**) instead of locally on your machine (the **client**).
@@ -121,18 +121,18 @@ Here are some useful ones to consider:
 Example:
 
 ```
-[cs15lwi22afr@ieng6-201]:~:96$ ls
+[cs15lwi22xyz@ieng6-201]:~:96$ ls
 WhereAmI.class  WhereAmI.java  perl5
-[cs15lwi22afr@ieng6-201]:~:97$ mkdir test
-[cs15lwi22afr@ieng6-201]:~:98$ ls
+[cs15lwi22xyz@ieng6-201]:~:97$ mkdir test
+[cs15lwi22xyz@ieng6-201]:~:98$ ls
 WhereAmI.class  WhereAmI.java  perl5  test
-[cs15lwi22afr@ieng6-201]:~:99$ cd test
-[cs15lwi22afr@ieng6-201]:test:100$ cd ..
-[cs15lwi22afr@ieng6-201]:~:102$ cp WhereAmI.java ~/test
-[cs15lwi22afr@ieng6-201]:~:103$ cd test
-[cs15lwi22afr@ieng6-201]:test:104$ ls
+[cs15lwi22xyz@ieng6-201]:~:99$ cd test
+[cs15lwi22xyz@ieng6-201]:test:100$ cd ..
+[cs15lwi22xyz@ieng6-201]:~:102$ cp WhereAmI.java ~/test
+[cs15lwi22xyz@ieng6-201]:~:103$ cd test
+[cs15lwi22xyz@ieng6-201]:test:104$ ls
 WhereAmI.java
-[cs15lwi22afr@ieng6-201]:test:105$
+[cs15lwi22xyz@ieng6-201]:test:105$
 ```
 
 ## Part 4: Moving files with `scp`
@@ -164,14 +164,14 @@ PS C:\Users\weiyao\Documents\GitHub\cse15l-lab-reports\wk2-lab-report> ls
 > From my local machine, I want to transfer one of these PNG files to my working directory on the server.
 
 ```
-PS C:\Users\weiyao\Documents\GitHub\cse15l-lab-reports\wk2-lab-report> scp VSCode.PNG cs15lwi22afr@ieng6.ucsd.edu:~/
+PS C:\Users\weiyao\Documents\GitHub\cse15l-lab-reports\wk2-lab-report> scp VSCode.PNG cs15lwi22xyz@ieng6.ucsd.edu:~/
 Password:
 VSCode.PNG                                                                                   100%   24KB 398.4KB/s   00:00     
-PS C:\Users\weiyao\Documents\GitHub\cse15l-lab-reports\wk2-lab-report> ssh cs15lwi22afr@ieng6.ucsd.edu
+PS C:\Users\weiyao\Documents\GitHub\cse15l-lab-reports\wk2-lab-report> ssh cs15lwi22xyz@ieng6.ucsd.edu
 Password: 
 Last login: Fri Jan 14 16:29:10 2022 from 100.83.33.11
 quota: No filesystem specified.
-Hello cs15lwi22afr, you are currently logged into ieng6-201.ucsd.edu
+Hello cs15lwi22xyz, you are currently logged into ieng6-201.ucsd.edu
 
 You are using 0% CPU on this system
 
@@ -183,7 +183,7 @@ ieng6-203   16:50:01   18  1.99,  2.06,  2.22
 
  
 Fri Jan 14, 2022  4:54pm - Prepping cs15lwi22
-[cs15lwi22afr@ieng6-201]:~:106$ ls
+[cs15lwi22xyz@ieng6-201]:~:106$ ls
 VSCode.PNG  WhereAmI.class  WhereAmI.java  perl5  test
 ```
 > Success! My file now appears when I call `ls` after logging in to the remote directory.
@@ -192,4 +192,146 @@ VSCode.PNG  WhereAmI.class  WhereAmI.java  perl5  test
 
 As you might have noticed, every time you try to establish a connection over SSH (including `scp`, which uses the SSH protocol), you are required to enter your password. This is nice and secure, but can quickly get tiresome when making the same SSH connection over and over again throughout a day's work.
 
-SSH keys provide a solution: `ssh-keygen` creates a pair of files called the `
+SSH keys provide a solution: `ssh-keygen` creates a pair of files called the **public key** and **private key** that work together to provide authentication in place of a password.
+
+*Note: Just as it is unsafe to use the same password across all of your accounts, **you should generate a new public/private key pair for every machine** that you connect from!*
+
+Here's how to set it up:
+
+- On a terminal on your machine, run `ssh-keygen`:
+
+```
+PS C:\Users\weiyao\Documents\GitHub\cse15l-lab-reports> ssh-keygen
+Generating public/private rsa key pair.
+Enter file in which to save the key (C:\Users\weiyao/.ssh/id_rsa): 
+```
+- You may choose to select a custom directory here, or just press enter for the default.
+
+```
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in C:\Users\weiyao/.ssh/id_rsa.
+Your public key has been saved in C:\Users\weiyao/.ssh/id_rsa.pub.
+The key fingerprint is:
+SHA256:9zJ5K6DBFVf+wP5njmr0jq2wbxeiHOa2QPzGVUd+qDY weiyao@LAPTOP-FJV7LLUO
+The key's randomart image is:
++---[RSA 3072]----+
+|           ..   .|
+|        . .o   + |
+|         o  + o +|
+|       ..  . = ..|
+|     . .S . E .  |
+|      o..+o=oo.  |
+|       o.=O+oo..o|
+|      .  o**o+o= |
+|         .o**=+ .|
++----[SHA256]-----+
+```
+Two files should now exist in the directory you specified: the private key `id_rsa` and public key `id_rsa.pub`.
+___
+
+Again, on Windows, there are a [few extra steps](https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_keymanagement#user-key-generation):
+
+- Run **Windows Powershell as Administrator** (*Different from your terminal in VSCode!*) and run `GGet-Service ssh-agent | Set-Service -StartupType Manual`
+
+- Start the service with `Start-Service ssh-agent`
+
+```
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Try the new cross-platform PowerShell https://aka.ms/pscore6
+
+PS C:\Windows\system32> Get-Service ssh-agent | Set-Service -StartupType Manual
+
+```
+
+- Verify the status of `ssh-agent` with `Get-Service ssh-agent`
+
+```
+PS C:\Windows\system32> Get-Service ssh-agent
+
+Status   Name               DisplayName
+------   ----               -----------
+Running  ssh-agent          OpenSSH Authentication Agent
+
+```
+- Now load your private key file into `ssh-agent` with `ssh-add <path to key>`. If you set up a passphrase, enter it here.
+
+```
+PS C:\Windows\system32> ssh-add C:\Users\weiyao\.ssh\id_rsa
+Enter passphrase for C:\Users\weiyao\.ssh\id_rsa:
+Identity added: C:\Users\weiyao\.ssh\id_rsa (weiyao@LAPTOP-FJV7LLUO)
+PS C:\Windows\system32>
+```
+
+In short, `ssh-agent` here acts like a password manager (key manager!) for your private key. After adding your private key to ssh-agent, it's recommended to back up your private key to a **secure location**, before **deleting it from your local system**. This will help preventing your private key from falling into the wrong hands.
+___
+
+With your public and private key ready:
+
+- Copy the **public key** to the `.ssh` directory of your account on the server. (You probably need to create such a directory first!)
+
+```
+PS C:\Users\weiyao\Documents\GitHub\cse15l-lab-reports> ssh cs15lwi22xyz@ieng6.ucsd.edu
+Password: 
+Last login: Fri Jan 14 17:24:42 2022 from 100.83.33.11
+quota: No filesystem specified.
+Hello cs15lwi22xyz, you are currently logged into ieng6-201.ucsd.edu
+
+You are using 0% CPU on this system
+
+Cluster Status 
+Hostname     Time    #Users  Load  Averages  
+ieng6-201   17:20:01   27  3.25,  3.35,  3.38
+ieng6-202   17:20:01   15  6.71,  6.83,  6.78
+ieng6-203   17:20:01   14  3.05,  2.63,  2.43
+
+ 
+Fri Jan 14, 2022  5:25pm - Prepping cs15lwi22
+[cs15lwi22xyz@ieng6-201]:~:109$ mkdir .ssh
+[cs15lwi22xyz@ieng6-201]:~:110$ logout
+Connection to ieng6.ucsd.edu closed.
+PS C:\Users\weiyao\Documents\GitHub\cse15l-lab-reports> scp C:\Users\weiyao\.ssh\id_rsa.pub cs15lwi22xyz@ieng6.ucsd.edu:~/.ssh/authorized_keys
+Password: 
+id_rsa.pub                                                                                   100%  577   148.3KB/s   00:00    
+PS C:\Users\weiyao\Documents\GitHub\cse15l-lab-reports> 
+```
+
+Now, using `ssh` to access the server from this machine should no longer prompt you for a password!
+
+```
+PS C:\Users\weiyao\Documents\GitHub\cse15l-lab-reports> ssh cs15lwi22afr@ieng6.ucsd.edu
+Last login: Fri Jan 14 17:28:35 2022 from 100.83.33.11
+quota: No filesystem specified.
+Hello cs15lwi22afr, you are currently logged into ieng6-201.ucsd.edu
+
+You are using 0% CPU on this system
+
+Cluster Status 
+Hostname     Time    #Users  Load  Averages  
+ieng6-201   17:25:01   28  3.12,  3.34,  3.37
+ieng6-202   17:25:01   17  6.32,  6.61,  6.71
+ieng6-203   17:25:01   16  2.18,  2.55,  2.46
+
+ 
+Fri Jan 14, 2022  5:28pm - Prepping cs15lwi22
+[cs15lwi22afr@ieng6-201]:~:117$ 
+```
+
+## Part 6: Optimizing Remote Running.
+
+Now, there are many tips and tricks to making remote running as pleasant as possible. Expect this page to be updated as I discover them. Here's some that you can consider:
+
+- Separate commands with a semicolon `;` to run multiple commands in a single line
+```
+[cs15lwi22afr@ieng6-201]:~:122$ javac WhereAmI.java; java WhereAmI
+Linux
+cs15lwi22afr
+/home/linux/ieng6/cs15lwi22/cs15lwi22afr
+/home/linux/ieng6/cs15lwi22/cs15lwi22afr
+```
+
+- Add commands to the end of an `ssh` command to immediately run them upon connection to the remote server.
+
+Remember, **up and down arrow keys** are your best friends: They allow you to access possibly lengthy commands saved in history!
