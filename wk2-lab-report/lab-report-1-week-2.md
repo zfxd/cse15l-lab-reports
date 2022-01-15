@@ -10,7 +10,7 @@ Visual Studio Code is a code editor for Windows, Linux or macOS with support for
 
 - Your Visual Studio Code should look something like this after installation:
 
-![VS Code Screenshot](VSCode.png)
+![VS Code Screenshot](VSCode.PNG)
 
 # Course-specific accounts at UCSD
 
@@ -20,7 +20,7 @@ You can do so by looking up your course-specific account [here](https://sdacs.uc
 
 - Enter your username (the part of your UCSD email before @ucsd.edu), and your student PID (Which starts with A) to look up the course-specific accounts under your name.
 
-![Login like so](AccountLookup.png)
+![Login like so](AccountLookup.PNG)
 
 - Under **"Additional Accounts"**, you can find course-specific accounts. For CSE 15L in Winter 22, you will see something like `cs15lwi22xyz` where `xyz` will be replaced by the unique letters of your course-specific account.
 
@@ -52,7 +52,7 @@ On Windows, you will first need to install OpenSSH. To do so (Steps from [Window
 
 Once done, your settings page should look something like this:
 
-![OpenSSH has been installed](OpenSSH.png)
+![OpenSSH has been installed](OpenSSH.PNG)
 
 ___
 
@@ -102,4 +102,94 @@ Congratulations, you are now connected to one of the computers in the CSE baseme
 
 ## Part 3: Trying some commands
 
-[hey](fwunixref.pdf)
+If you have used linux before, these commands might be familiar to you. If not, a list of useful commands for navigating the terminal can be found [here](fwunixref.pdf).
+
+Here are some useful ones to consider:
+
+`pwd` - Print the path to the current directory.
+
+`ls <dir>` - Prints the contents of the directory. Prints the current directory if a path is not provided.
+
+`cd <dir>` - Change directory to the directory provided. If no directory is provided, changes directory to the home directory.
+
+`cp <file> <destination>` - Copy a file to the destination path
+
+`mkdir <name>` - Create a directory with the name provided.
+
+`exit` or `logout` both work to disconnect from the ssh connection.
+
+Example:
+
+```
+[cs15lwi22afr@ieng6-201]:~:96$ ls
+WhereAmI.class  WhereAmI.java  perl5
+[cs15lwi22afr@ieng6-201]:~:97$ mkdir test
+[cs15lwi22afr@ieng6-201]:~:98$ ls
+WhereAmI.class  WhereAmI.java  perl5  test
+[cs15lwi22afr@ieng6-201]:~:99$ cd test
+[cs15lwi22afr@ieng6-201]:test:100$ cd ..
+[cs15lwi22afr@ieng6-201]:~:102$ cp WhereAmI.java ~/test
+[cs15lwi22afr@ieng6-201]:~:103$ cd test
+[cs15lwi22afr@ieng6-201]:test:104$ ls
+WhereAmI.java
+[cs15lwi22afr@ieng6-201]:test:105$
+```
+
+## Part 4: Moving files with `scp`
+
+`scp`, or secure copy,  is a means of securely transferring files between two machines over SSH. Here's how to do it:
+
+- From a terminal on your machine, use the command `scp <file name> cs15lwi22zz@ieng6.ucsd.edu:~/`, remembering to use your course-specific username.
+
+- It'll prompt you for your password as per your usual SSH login, enter it as normal.
+
+Your file should have successfully been copied to the home directory of your account on the machine! You can verify this by logging in via SSH once again, and using `ls` to print out the directory's contents:
+
+```
+PS C:\Users\weiyao\Documents\GitHub\cse15l-lab-reports\wk2-lab-report> ls
+
+    Directory: C:\Users\weiyao\Documents\GitHub\cse15l-lab-reports\wk2-lab-report
+
+
+----                 -------------         ------ ----
+-a----         1/14/2022   3:48 PM          37305 AccountLookup.PNG
+-a----          1/3/2022   9:43 AM          70752 fwunixref.pdf
+-a----         1/14/2022   4:51 PM           6096 lab-report-1-week-2.md
+-a----         1/14/2022   3:43 PM          26732 OpenSSH.PNG
+-a----         1/14/2022   4:12 PM          80698 PWReset.PNG
+-a----         1/14/2022   3:32 PM          24343 VSCode.PNG
+-a----         1/14/2022   3:52 PM          53118 wezResults.PNG
+```
+
+> From my local machine, I want to transfer one of these PNG files to my working directory on the server.
+
+```
+PS C:\Users\weiyao\Documents\GitHub\cse15l-lab-reports\wk2-lab-report> scp VSCode.PNG cs15lwi22afr@ieng6.ucsd.edu:~/
+Password:
+VSCode.PNG                                                                                   100%   24KB 398.4KB/s   00:00     
+PS C:\Users\weiyao\Documents\GitHub\cse15l-lab-reports\wk2-lab-report> ssh cs15lwi22afr@ieng6.ucsd.edu
+Password: 
+Last login: Fri Jan 14 16:29:10 2022 from 100.83.33.11
+quota: No filesystem specified.
+Hello cs15lwi22afr, you are currently logged into ieng6-201.ucsd.edu
+
+You are using 0% CPU on this system
+
+Cluster Status 
+Hostname     Time    #Users  Load  Averages  
+ieng6-201   16:50:01   34  3.58,  3.70,  3.59
+ieng6-202   16:50:01   24  7.32,  6.92,  6.72
+ieng6-203   16:50:01   18  1.99,  2.06,  2.22
+
+ 
+Fri Jan 14, 2022  4:54pm - Prepping cs15lwi22
+[cs15lwi22afr@ieng6-201]:~:106$ ls
+VSCode.PNG  WhereAmI.class  WhereAmI.java  perl5  test
+```
+> Success! My file now appears when I call `ls` after logging in to the remote directory.
+
+## Part 5: Setting an SSH key.
+
+As you might have noticed, every time you try to establish a connection over SSH (including `scp`, which uses the SSH protocol), you are required to enter your password. This is nice and secure, but can quickly get tiresome when making the same SSH connection over and over again throughout a day's work.
+
+SSH keys provide a solution: `ssh-keygen` creates a pair of files called the `
