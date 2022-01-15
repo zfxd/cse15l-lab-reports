@@ -1,3 +1,8 @@
+Lab Report 1
+============
+
+Back to [home](..\index.md).
+
 # Setting up your workspace
 
 ## Part 1: Installing VSCode
