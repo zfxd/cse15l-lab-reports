@@ -301,10 +301,10 @@ PS C:\Users\weiyao\Documents\GitHub\cse15l-lab-reports>
 Now, using `ssh` to access the server from this machine should no longer prompt you for a password!
 
 ```
-PS C:\Users\weiyao\Documents\GitHub\cse15l-lab-reports> ssh cs15lwi22afr@ieng6.ucsd.edu
+PS C:\Users\weiyao\Documents\GitHub\cse15l-lab-reports> ssh cs15lwi22xyz@ieng6.ucsd.edu
 Last login: Fri Jan 14 17:28:35 2022 from 100.83.33.11
 quota: No filesystem specified.
-Hello cs15lwi22afr, you are currently logged into ieng6-201.ucsd.edu
+Hello cs15lwi22xyz, you are currently logged into ieng6-201.ucsd.edu
 
 You are using 0% CPU on this system
 
@@ -316,7 +316,7 @@ ieng6-203   17:25:01   16  2.18,  2.55,  2.46
 
  
 Fri Jan 14, 2022  5:28pm - Prepping cs15lwi22
-[cs15lwi22afr@ieng6-201]:~:117$ 
+[cs15lwi22xyz@ieng6-201]:~:117$ 
 ```
 
 ## Part 6: Optimizing Remote Running.
@@ -325,13 +325,20 @@ Now, there are many tips and tricks to making remote running as pleasant as poss
 
 - Separate commands with a semicolon `;` to run multiple commands in a single line
 ```
-[cs15lwi22afr@ieng6-201]:~:122$ javac WhereAmI.java; java WhereAmI
+[cs15lwi22xyz@ieng6-201]:~:122$ javac WhereAmI.java; java WhereAmI
 Linux
-cs15lwi22afr
-/home/linux/ieng6/cs15lwi22/cs15lwi22afr
-/home/linux/ieng6/cs15lwi22/cs15lwi22afr
+cs15lwi22xyz
+/home/linux/ieng6/cs15lwi22/cs15lwi22xyz
+/home/linux/ieng6/cs15lwi22/cs15lwi22xyz
 ```
 
-- Add commands to the end of an `ssh` command to immediately run them upon connection to the remote server.
+- Add commands in quotations to the end of an `ssh` command to run them remotely, then immediately disconnect.
+```
+PS C:\Users\weiyao\Documents\GitHub\cse15l-lab-reports> ssh cs15lwi22xyz@ieng6.ucsd.edu 'javac WhereAmI.java; java WhereAmI'   
+Linux
+cs15lwi22xyz
+/home/linux/ieng6/cs15lwi22/cs15lwi22xyz
+/home/linux/ieng6/cs15lwi22/cs15lwi22xyz
+```
 
 Remember, **up and down arrow keys** are your best friends: They allow you to access possibly lengthy commands saved in history!
