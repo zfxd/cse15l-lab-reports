@@ -71,7 +71,8 @@ ssh cs15lwi22xyz@ieng6.ucsd.edu
 
 When connecting to a server for the first time, a message like this should appear:
 
-``` The authenticity of host 'ieng6.ucsd.edu (128.54.70.238)' can't be established.
+``` 
+The authenticity of host 'ieng6.ucsd.edu (128.54.70.238)' can't be established.
 RSA key fingerprint is SHA256:ksruYwhnYH+sySHnHAtLUHngrPEyZTDl/1x99wUQcec.
 Are you sure you want to continue connecting (yes/no/[fingerprint])?
 ```
@@ -348,5 +349,6 @@ cs15lwi22xyz
 /home/linux/ieng6/cs15lwi22/cs15lwi22xyz
 /home/linux/ieng6/cs15lwi22/cs15lwi22xyz
 ```
+
 
 Remember, **up and down arrow keys** are your best friends: They allow you to access possibly lengthy commands saved in history!
