@@ -1,7 +1,7 @@
 Lab Report 1
 ============
 
-Back to [home](..\index.md).
+Back to [home](../index).
 
 # Setting up your workspace
 
@@ -25,7 +25,7 @@ You can do so by looking up your course-specific account [here](https://sdacs.uc
 
 - Enter your username (the part of your UCSD email before @ucsd.edu), and your student PID (Which starts with A) to look up the course-specific accounts under your name.
 
-![Login like so](AccountLookup.PNG)
+![Login](AccountLookup.PNG)
 
 - Under **"Additional Accounts"**, you can find course-specific accounts. For CSE 15L in Winter 22, you will see something like `cs15lwi22xyz` where `xyz` will be replaced by the unique letters of your course-specific account.
 
@@ -101,7 +101,6 @@ ieng6-203   16:25:01   19  2.25,  2.62,  2.50
 
 
 Fri Jan 14, 2022  4:29pm - Prepping cs15lwi22
-[cs15lwi22xyz@ieng6-201]:~:76$
 ```
 
 Congratulations, you are now connected to one of the computers in the CSE basement! Any commands you enter now will be run on that computer (the **server**) instead of locally on your machine (the **client**).
@@ -145,11 +144,11 @@ WhereAmI.java
 
 `scp`, or secure copy,  is a means of securely transferring files between two machines over SSH. Here's how to do it:
 
-- From a terminal on your machine, use the command `scp <file name> cs15lwi22zz@ieng6.ucsd.edu:~/`, remembering to use your course-specific username.
+- From a terminal on your machine, use the command `scp <file name> cs15lwi22xyz@ieng6.ucsd.edu:~/`, remembering to use your course-specific username.
 
 - It'll prompt you for your password as per your usual SSH login, enter it as normal.
 
-Your file should have successfully been copied to the home directory of your account on the machine! You can verify this by logging in via SSH once again, and using `ls` to print out the directory's contents:
+Your file should have successfully been copied to the home directory of your account on the machine! You can verify this by logging in via SSH once again, and using `ls` to print out the directory's contents. For example:
 
 ```
 PS C:\Users\weiyao\Documents\GitHub\cse15l-lab-reports\wk2-lab-report> ls
@@ -211,6 +210,7 @@ PS C:\Users\weiyao\Documents\GitHub\cse15l-lab-reports> ssh-keygen
 Generating public/private rsa key pair.
 Enter file in which to save the key (C:\Users\weiyao/.ssh/id_rsa): 
 ```
+
 - You may choose to select a custom directory here, or just press enter for the default.
 
 ```
@@ -233,12 +233,13 @@ The key's randomart image is:
 |         .o**=+ .|
 +----[SHA256]-----+
 ```
+
 Two files should now exist in the directory you specified: the private key `id_rsa` and public key `id_rsa.pub`.
 ___
 
 Again, on Windows, there are a [few extra steps](https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_keymanagement#user-key-generation):
 
-- Run **Windows Powershell as Administrator** (*Different from your terminal in VSCode!*) and run `GGet-Service ssh-agent | Set-Service -StartupType Manual`
+- Run **Windows Powershell as Administrator** (*Different from your terminal in VSCode!*) and run `Get-Service ssh-agent | Set-Service -StartupType Manual`
 
 - Start the service with `Start-Service ssh-agent`
 
@@ -249,7 +250,6 @@ Copyright (C) Microsoft Corporation. All rights reserved.
 Try the new cross-platform PowerShell https://aka.ms/pscore6
 
 PS C:\Windows\system32> Get-Service ssh-agent | Set-Service -StartupType Manual
-
 ```
 
 - Verify the status of `ssh-agent` with `Get-Service ssh-agent`
@@ -260,8 +260,8 @@ PS C:\Windows\system32> Get-Service ssh-agent
 Status   Name               DisplayName
 ------   ----               -----------
 Running  ssh-agent          OpenSSH Authentication Agent
-
 ```
+
 - Now load your private key file into `ssh-agent` with `ssh-add <path to key>`. If you set up a passphrase, enter it here.
 
 ```
@@ -330,6 +330,7 @@ Fri Jan 14, 2022  5:28pm - Prepping cs15lwi22
 Now, there are many tips and tricks to making remote running as pleasant as possible. Expect this page to be updated as I discover them. Here's some that you can consider:
 
 - Separate commands with a semicolon `;` to run multiple commands in a single line
+
 ```
 [cs15lwi22xyz@ieng6-201]:~:122$ javac WhereAmI.java; java WhereAmI
 Linux
@@ -339,6 +340,7 @@ cs15lwi22xyz
 ```
 
 - Add commands in quotations to the end of an `ssh` command to run them remotely, then immediately disconnect.
+
 ```
 PS C:\Users\weiyao\Documents\GitHub\cse15l-lab-reports> ssh cs15lwi22xyz@ieng6.ucsd.edu 'javac WhereAmI.java; java WhereAmI'   
 Linux
