@@ -75,6 +75,7 @@ When connecting to a server for the first time, a message like this should appea
 RSA key fingerprint is SHA256:ksruYwhnYH+sySHnHAtLUHngrPEyZTDl/1x99wUQcec.
 Are you sure you want to continue connecting (yes/no/[fingerprint])?
 ```
+
 - Enter `yes` to proceed. Next, enter the password for your course-specific account as prompted.
 
 ```
