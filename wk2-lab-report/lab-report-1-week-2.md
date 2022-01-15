@@ -236,6 +236,7 @@ The key's randomart image is:
 ```
 
 Two files should now exist in the directory you specified: the private key `id_rsa` and public key `id_rsa.pub`.
+
 ___
 
 Again, on Windows, there are a [few extra steps](https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_keymanagement#user-key-generation):
@@ -273,6 +274,7 @@ PS C:\Windows\system32>
 ```
 
 In short, `ssh-agent` here acts like a password manager (key manager!) for your private key. After adding your private key to ssh-agent, it's recommended to back up your private key to a **secure location**, before **deleting it from your local system**. This will help preventing your private key from falling into the wrong hands.
+
 ___
 
 With your public and private key ready:
