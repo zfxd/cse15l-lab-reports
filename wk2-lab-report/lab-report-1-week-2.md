@@ -1,7 +1,7 @@
 Lab Report 1
 ============
 
-Back to [home](..\index.md).
+Back to [home](../index.md).
 
 # Setting up your workspace
 
