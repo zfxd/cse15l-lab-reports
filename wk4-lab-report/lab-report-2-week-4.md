@@ -69,8 +69,6 @@ For our current test files, the program seems to produce the expected output:
 ```
 PS E:\Github\markdown-parse> java MarkdownParse image-break.md
 [workinglink.com]
-PS E:\Github\markdown-parse> java MarkdownParse blankfile-break.md
-[]
 PS E:\Github\markdown-parse> java MarkdownParse newline-break.md  
 [https://something.com, some-page.html]
 PS E:\Github\markdown-parse> java MarkdownParse test-file.md    
