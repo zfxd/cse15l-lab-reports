@@ -330,7 +330,35 @@ Fri Jan 14, 2022  5:28pm - Prepping cs15lwi22
 
 ## Part 6: Optimizing Remote Running.
 
-Now, there are many tips and tricks to making remote running as pleasant as possible. Expect this page to be updated as I discover them. Here's some that you can consider:
+Here's how you can set up your workflow such that you can make edits locally, transfer the file to a remote server, compile and run it very quickly!
+
+It's a lot to type to get started, but once you've had it set up, you can get it all done in **under 5 keystrokes!**
+
+Here it is in action:
+
+```
+PS E:\Github\cse15l-lab-reports\wk2-lab-report> scp WhereAmI.java cs15lwi22xyz@ieng6.ucsd.edu:~/;ssh cs15lwi22xyz@ieng6.ucsd.edu 'javac WhereAmI.java; java WhereAmI'     
+WhereAmI.java                                                                                                                                                                                              100%  510    21.4KB/s   00:00    
+Linux
+cs15lwi22xyz
+/home/linux/ieng6/cs15lwi22/cs15lwi22xyz
+/home/linux/ieng6/cs15lwi22/cs15lwi22xyz
+```
+
+Here we're using `scp` to transfer the updated file to our remote server. After that, `;` allows us to run another command in the terminal without starting a new line, which we use to `ssh` into the server, before telling it to combine and run the file we just transferred. Lastly, after completing the `javac` and `java` commands, we automatically exit our `ssh` connection, and can go straight back to editing our code after seeing the output!
+
+After we've run this command once, all we have to do is use the **up arrow** to access our command history, and everything will be ready to go!
+
+Total keystrokes after each edit:
+
+- `Ctrl + S` to save:
+- `Click` to gain focus in your terminal window. 
+- `Up arrow` to access the saved command.
+- `Enter`, and watch the magic happen! 
+
+## Five inputs! Isn't that convenient?
+
+Now, there are many more tips and tricks to making remote running as pleasant as possible. Expect this page to be updated as I discover them. Here's some that you can consider:
 
 - Separate commands with a semicolon `;` to run multiple commands in a single line
 
