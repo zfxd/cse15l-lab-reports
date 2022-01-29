@@ -334,6 +334,8 @@ Here's how you can set up your workflow such that you can make edits locally, tr
 
 It's a lot to type to get started, but once you've had it set up, you can get it all done in **under 5 keystrokes!**
 
+The command: `scp WhereAmI.java cs15lwi22xyz@ieng6.ucsd.edu:~/;ssh cs15lwi22xyz@ieng6.ucsd.edu 'javac WhereAmI.java; java WhereAmI'`
+
 Here it is in action:
 
 ```
