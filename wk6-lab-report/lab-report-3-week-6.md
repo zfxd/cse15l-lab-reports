@@ -74,4 +74,6 @@ WhereAmI.class  cse15l-lab-reports  markdown-parse  scp    skill-demonstration-1
 [cs15lwi22afr@ieng6-202]:~:255$
 ```
 
+`index.md` has been successfully copied over!
+
 Note: In your config file, `ieng6` after `Host:` can be set to any alias you'd like to use in place of your username.
