@@ -33,8 +33,6 @@ MY IMPLEMENTATION
 
 Here is `22.md`, for reference.
 
-[foo](/bar\* "ti\*tle")
-
 ```
 [foo](/bar\* "ti\*tle")
 ```
